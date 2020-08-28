@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        
+        <link rel = "icon" href = "images/favicon.ico">
+
+        <link rel = "stylesheet" href = "themes/yellow.css" id = "colorScheme">
+
+        <link rel = "stylesheet" href = "index.css">
+        <link rel = "stylesheet" href = "signin.css">
+        <link rel = "stylesheet" href = "addInfo.css">
+        <link rel = "stylesheet" href = "top.css">
+        <link rel = "stylesheet" href = "transition.css">
+        <link rel = "stylesheet" href = "tasks.css">
+
+        <script type="text/javascript" src="schedule.js"></script>
+
+        <script src="https://apis.google.com/js/api.js"></script>
+        <!-- <script src="https://apis.google.com/js/client" type="application/javascript"></script> -->
+
+
+        <script defer src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+
+        <script defer type = "text/javascript" src = "firebase-initialize.js"></script>
+        <script defer type = "text/javascript" src = "auth.js"></script>
+        <script defer type = "text/javascript" src = "firebase-firestore.js"></script>
+        <script defer type = "text/javascript" src = "tasks.js"></script> 
+        <script defer type = "text/javascript" src="rendering.js"></script>
+
+        <script defer type = "text/javascript" src="index.js"></script>
+    </head>
+
+    <body>
+
+        
+
+        <div id = "signinPage">
+
+            <div id = "signin">
+                <h1 id = "signinText">Sign in: </h1>
+                <button onclick = "signIn()" id = "signinButton"><img id = "signinButtonImage" src = "images/btn_google_signin_light_normal_web@2x.png"></button>
+            </div>
+
+        </div>
+
+        <div id = "homePage">
+            <div id = "bigProgressBar"></div>
+            <div id = "class">
+                <div id = "timeDiv">
+                    <h1 id = "time" class = "pageTitle">Time: Class</h1>
+                </div>
+                
+                <div class = "buttons">
+                    <button class = "topButtons" onclick = "goAddClassesPage()">Add Info</button>
+                    <button class = "topButtons" onclick = "signOut()">Sign Out</button>
+                    
+                </div>
+            </div>
+
+            <div id = "main">
+                <div id = "classInfo">
+                    <h2 id = "className">Class Name</h2>
+
+                    
+                    
+                    <a class = "links" target="_blank"><h3 class = "classInfoText" id = "zoomLink">https://zoom.com/asdfghjkl</h3></a>
+                    <h3 class = "classInfoText" id = "zoomPassword">Password</h3>
+
+                    <a class = "links" target="_blank"><h3 class = "classInfoText" id = "canvasLink">https://mvla.instructure.com</h3></a>
+                    <a class = "links" target="_blank"><h3 class = "classInfoText" id = "other">https://classroom.google.com</h3></a>
+
+                    <h3 class = "classInfoText" id = "tasksTitle">Tasks: </h3> 
+                    
+                    <div>
+                        <div id = "plusClickDiv" onclick = "addTaskButton()"><svg  id = "newTaskButton" version="1.1" viewBox="0.0 0.0 96.0 96.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l96.0 0l0 96.0l-96.0 0l0 -96.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m48.0 7.9107614l0 80.18898" fill-rule="evenodd"/><path stroke="#000000" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="butt" d="m48.0 7.9107614l0 80.18898" fill-rule="evenodd"/><path fill="#000000" fill-opacity="0.0" d="m87.98688 48.0l-79.968506 0" fill-rule="evenodd"/><path stroke="#000000" stroke-width="2.0" stroke-linejoin="round" stroke-linecap="butt" d="m87.98688 48.0l-79.968506 0" fill-rule="evenodd"/></g></svg></div>
+                        <input id = "taskInput" type = "text">
+                    </div>
+
+                    <div id = "tasksDiv">
+                        <!-- <div class = "task">
+                            <div class = "checkboxImage"></div>
+                            <h3 class = "taskText">hello world</h1>
+                        </div>  -->
+                    </div>
+                </div>
+
+                <div id = "classes">
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 1</h2></div>
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 2</h2></div>
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 3</h2></div>
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 4</h2></div>
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 5</h2></div>
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 6</h2></div>
+                    <div class = "class"><h2 class = "classText" onclick = "select(this.innerHTML)">Period 7</h2></div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "addInfoPage">
+
+            <div class = "top">
+                <h1 class = "pageTitle">Update Classes</h1>
+                <div class = "buttons">
+                    <button class = "topButtons" onclick = "goHomePage()" id = "backHome">Back</button>
+                    <button class = "topButtons" onclick = "updateStoredData()" id = "submitInfoButton">Update</button>
+                    
+                </div>
+            </div>
+
+            <select id = "themeSelect" onchange = "previewSelectedTheme()">
+                <option value = "yellow">Yellow</option>
+                <option value = "coral">Coral</option>
+                <option value = "gray">Gray</option>
+                <option value = "green">Green</option>
+                <option value = "aqua">Aqua</option>
+                <option value = "sky">Sky</option>
+                <option value = "green">Green</option>
+                <option value = "pink">Pink</option>
+            </select>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 1:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 2:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 3:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 4:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 5:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 6:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+            <div class = "classAddInfoDiv">
+                <h1 class = "classAddPeriod">Period 7:</h1>
+                <input class = "classAddName" placeholder = "Class name" type = "text">
+                <br>
+                <input class = "classAddLinks" placeholder = "Zoom link" type = "text">
+                <input class = "classAddLinks" placeholder = "Zoom password" type = "text">
+                <input class = "classAddLinks" placeholder = "Canvas link" type = "text">
+                <input class = "classAddLinks" placeholder = "Other" type = "text">
+            </div>
+
+        </div>
+
+        <div id = "transition" class = "flash">
+            <img id = "loading" src = "images/Yellow Load.png">
+        </div>
+        
+    </body>
+</html>

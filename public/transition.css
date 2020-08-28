@@ -1,0 +1,33 @@
+#transition {
+    background-color: var(--backgroundColor);
+    
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.flash {
+    opacity: 1;
+    transition: opacity 2s cubic-bezier(.9,.01,1,1);
+    display: block !important;
+}
+
+@keyframes spin {
+    0%   {transform: rotate(0);}
+    50%  {transform: rotate(180deg);}
+    100% {transform: rotate(360deg);}
+}
+
+#loading {
+    width: 7vw;
+    height: auto;
+    margin-left: 46.5vw;
+    margin-top: calc(calc(100vh - 7vw) / 2);
+    animation: spin 0.5s linear 0s infinite normal;
+}
+

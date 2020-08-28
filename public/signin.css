@@ -1,0 +1,41 @@
+#signin {
+    /* position: absolute; */
+    width: 40vh;
+    height: 40vh;
+    flex: 1;
+    text-align: center;
+    margin-left: calc(calc(100vw - 40vh) / 2);
+    margin-top: 20vh;
+    border: 5px solid var(--outlineColor);
+}
+
+#signinPage {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    background-color: var(--backgroundColor);
+}
+
+#signinText {
+    margin-top: 5vh;
+    font-size: 5vh;
+}
+
+#signinButton {
+    border: none;
+    background-color: var(--backgroundColor);
+    padding: 0;
+    width: 80%;
+    margin-top: 3vw;
+    position: relative;
+}
+
+#signinButtonImage {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,40 @@
+.buttons {
+    height: 10vh;
+    position: absolute;
+    right: 7vh;
+    width: auto;
+}
+
+.topButtons {
+    position: relative;
+    float: left;
+    text-align: right;
+    margin-right: 7vh;
+    margin-top: 1.5vh;
+    font-size: 4vh;
+    border: 4px solid var(--outlineColor);
+    background-color: var(--backgroundColor);
+    padding-left: 1vh;
+    padding-right: 1vh;
+}
+
+.topButtons:hover {
+    background-color: var(--highlightColor);
+}
+
+.topButtons:last-child {
+    margin-right: 0 !important;
+}
+
+.top {
+    position: absolute;
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+}
+
+.pageTitle {
+    font-size: 7vh;
+    margin-left: 5vh;
+    float: left;
+}
