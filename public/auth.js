@@ -44,7 +44,11 @@ function updateSigninStatus(isSignedIn) {
         .then( function(userCredential) {
 
             signedInFbUser = userCredential.user;
-            
+            try {
+                isNew = signedInFbUser.additionalUserInfo.isNewUser;
+            } catch (e) {
+
+            }
 
             startApp();
         });
@@ -68,7 +72,14 @@ function signOut() {
       }).catch(function(error) {
         // An error happened.
       });
-    gapi.auth2.getAuthInstance().signOut();
+      try {
+          gapi.auth2.getAuthInstance().signOut();
+      } catch(err) {
+          console.log("unfortunate");
+      }
+    
+    location.reload();
+    return false;
 }
 
 function setCookie(name,value,days) {

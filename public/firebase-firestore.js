@@ -18,11 +18,8 @@ function updateStoredData() {
         }, {merge: true})
         .then(function() {
             goHomePage();
-<<<<<<< HEAD
             // console.log("Document successfully written!");
-=======
             console.log("Document successfully written!");
->>>>>>> a520c3a3a484a6c2caca7024ba6529f4e1aac331
             
         })
         .catch(function(error) {
@@ -32,12 +29,8 @@ function updateStoredData() {
     });
 
     var select = document.getElementById("themeSelect");
-<<<<<<< HEAD
     db.collection("users").doc(signedInFbUser.uid).set({
-=======
-    db.collection("users").doc(signedInUser.uid).set({
->>>>>>> a520c3a3a484a6c2caca7024ba6529f4e1aac331
-        theme: select.options[select.selectedIndex].value
+        "theme": select.options[select.selectedIndex].value
     }, { merge: true }).then(function() {
         location.reload();
         return false;
@@ -66,8 +59,4 @@ function getData() {
         document.getElementById("colorScheme").href = "themes/" + doc.data().theme + ".css";
     });
 
-    db.collection("users").doc(signedInUser.uid).get().then(function(doc) {
-        selectedTheme = doc.data().theme;
-        document.getElementById("colorScheme").href = "themes/" + doc.data().theme + ".css";
-    });
 }

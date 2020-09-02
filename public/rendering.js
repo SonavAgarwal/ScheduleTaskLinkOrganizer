@@ -75,11 +75,8 @@ function renderSelectedClass(selectedClassName) {
 
     //hightlight new class
     classTitles[selectedClass].parentElement.style.backgroundColor = "var(--highlightColor)";
-<<<<<<< HEAD
 
     if (taskListId != null) getTasks();
-=======
->>>>>>> a520c3a3a484a6c2caca7024ba6529f4e1aac331
 }
 
 function renderClassesList() {
