@@ -31,6 +31,8 @@ function createTask(task) {
     var taskDiv = document.createElement("div");
     taskDiv.classList.add("task");
 
+    container.scrollTop = 0;
+
     var checkbox = document.createElement("div");
     checkbox.classList.add("checkboxImage");
     checkbox.id = task.id;
@@ -47,13 +49,45 @@ function createTask(task) {
 
 function renderTasks() {
 
-    document.getElementById("tasksDiv").innerHTML = "";
+    try {
+        listOfTasks.length;
 
-    for (var j = 0; j < listOfTasks.length; j++) {
-        var task = listOfTasks[j];
-        if (task.title.charAt(0) == selectedClass)
-            createTask(task);
+        try {
+            document.getElementById("tasksDiv").innerHTML = "";
+            for (var j = 0; j < listOfTasks.length; j++) {
+                var task = listOfTasks[j];
+                if (task.title.charAt(0) == selectedClass)
+                    createTask(task);
+            }
+        } catch (otherErr) {
+            console.log(otherErr);
+        }
+    } catch (err) {
+        // console.log(err);
+        setTimeout(renderTasks, 250);
     }
+}
+
+function renderAllTasks() {
+
+    try {
+        listOfTasks.length;
+
+        try {
+            document.getElementById("tasksDiv").innerHTML = "";
+            for (var j = 0; j < listOfTasks.length; j++) {
+                var task = listOfTasks[j];
+                // if (task.title.charAt(0) == selectedClass)
+                    createTask(task);
+            }
+        } catch (otherErr) {
+            console.log(otherErr);
+        }
+    } catch (err) {
+        // console.log(err);
+        setTimeout(renderAllTasks, 250);
+    }
+    
 }
 
 function getTasks() {

@@ -5,7 +5,7 @@ var classTitles = document.getElementsByClassName("classText");
 var selectedClass = 0;
 var currentPeriod = -5;
 
-
+var manual = false;
 
 function startApp() {
     getData();
@@ -65,7 +65,9 @@ function fillAddInfo() {
 }
 
 function select(selectedClassName) {
-    renderSelectedClass(selectedClassName.substring(3));
+    if (selectedClassName == "All Tasks") renderAllTasksBox();
+    else renderSelectedClass(selectedClassName.substring(3));
+    manual = true;
 }
 
 function checkTime() {
@@ -118,7 +120,8 @@ function checkTime() {
                         }
 
                         if (today < actualPeriodTime && today >= periodTime) {
-                            document.getElementById("bigProgressBar").style.width = ((timeToSeconds(currentTime) - timeToSeconds(realStartTime + ":00")) / timeToSeconds(periodLength + ":00") * 100)+ "%";
+                            // bar to 0
+                            document.getElementById("bigProgressBar").style.width = "0";
                             var titleTimeString = secondsToTime(Math.abs(timeToSeconds(currentTime) - timeToSeconds(realStartTime + ":00")));
                             document.title = titleTimeString + " Passing";
                             setTimeout(changeTimeBy, 1000, -1, "Passing", 1, titleTimeString);
@@ -149,6 +152,10 @@ function checkTime() {
     document.getElementById("bigProgressBar").style.width = 0;
     document.title = "Free Time"
     currentPeriod = 0;
+    if (selectedClass != 7 && !manual) {
+        select("All Tasks");
+        manual = false;
+    }
 }
 
 function changeTimeBy(t, classString, depth, old) {

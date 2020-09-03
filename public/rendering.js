@@ -73,14 +73,41 @@ function renderSelectedClass(selectedClassName) {
         }
     }
 
+    document.getElementById("zoomLink").style.display = "block";
+    document.getElementById("zoomPassword").style.display = "block";
+    document.getElementById("canvasLink").style.display = "block";
+    document.getElementById("other").style.display = "block";
+    document.getElementById("tasksDiv").style.height = "15vh";
+
     //hightlight new class
     classTitles[selectedClass].parentElement.style.backgroundColor = "var(--highlightColor)";
 
     if (taskListId != null) getTasks();
+
+    manual = false;
+}
+
+function renderAllTasksBox() {
+    classTitles[selectedClass].parentElement.style.backgroundColor = "var(--backgroundColor)";
+    // if (taskListId != null) getTasks();
+
+    selectedClass = 7;
+    document.getElementById("className").innerHTML = "All Tasks";
+    document.getElementById("zoomLink").style.display = "none";
+    document.getElementById("zoomPassword").style.display = "none";
+    document.getElementById("canvasLink").style.display = "none";
+    document.getElementById("other").style.display = "none";
+
+    document.getElementById("tasksDiv").style.height = "55vh";
+
+    renderAllTasks();
+
+    //hightlight new class
+    classTitles[selectedClass].parentElement.style.backgroundColor = "var(--highlightColor)";
 }
 
 function renderClassesList() {
-    for (var i = 0; i < classTitles.length; i++) {
+    for (var i = 0; i < classTitles.length - 1; i++) {
         classTitles[i].innerHTML = (i + 1) + ". " + classData[i].name;
     }
 }
