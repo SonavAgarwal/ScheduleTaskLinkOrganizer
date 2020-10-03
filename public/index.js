@@ -1,5 +1,5 @@
 //load resources and set up variables
-const timeData = JSON.parse(scheduleData)[0].times;
+// const timeData = JSON.parse(normalScheduleData)[0].times;
 const numToDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var classTitles = document.getElementsByClassName("classText");
 var selectedClass = 0;
@@ -81,6 +81,8 @@ function checkTime() {
     //find the day of the week's schedule
     for (var i = 0; i < timeData.length; i++) {
         if (numToDay[today.getDay()] == timeData[i].day) {
+
+            // console.log("found " + numToDay[today.getDay()]);
             //find the period of the day
             for (var j = 0; j < 8; j++) {
                 try {
@@ -104,6 +106,10 @@ function checkTime() {
                     var periodEndTime = new Date(tempToday + endTime + ":00");
 
                     var actualPeriodTime = new Date(tempToday + realStartTime + ":00");
+
+                    // console.log("--------")
+                    // console.log(today);
+                    // console.log(periodTime);
 
                     //during this time period?
                     if (today > periodTime && today <= periodEndTime) {

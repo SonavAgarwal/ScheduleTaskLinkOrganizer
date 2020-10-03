@@ -3,6 +3,8 @@ var db = firebase.firestore();
 var classData = [];
 var selectedTheme;
 
+var timeData;
+
 
 function updateStoredData() {
     
@@ -42,6 +44,20 @@ function updateStoredData() {
 }
 
 function getData() {
+
+    console.log("getting data");
+
+    db.collection("schedules").doc("scheduleValues").get().then(function(doc) {
+        var currentWeekSchedule = doc.data().weekSchedule;
+        // console.log("weekschedluye");
+        // console.log(currentWeekSchedule);
+        if (currentWeekSchedule == "Labor") {
+            timeData = JSON.parse(labor)[0].times;
+        } else {
+            timeData = JSON.parse(normalScheduleData)[0].times;
+        }
+    });
+
     console.log(signedInFbUser.uid);
     db.collection("users").doc(signedInFbUser.uid).collection("classes").get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -58,5 +74,5 @@ function getData() {
         selectedTheme = doc.data().theme;
         document.getElementById("colorScheme").href = "themes/" + doc.data().theme + ".css";
     });
-
+    
 }
