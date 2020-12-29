@@ -53,6 +53,8 @@ function getData() {
         // console.log(currentWeekSchedule);
         if (currentWeekSchedule == "Labor") {
             timeData = JSON.parse(labor)[0].times;
+        } else if (currentWeekSchedule == "Finals") {
+            timeData = JSON.parse(finals)[0].times;
         } else {
             timeData = JSON.parse(normalScheduleData)[0].times;
         }
